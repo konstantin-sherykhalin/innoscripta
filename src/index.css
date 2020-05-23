@@ -28,7 +28,7 @@ h3 {
 	font-size: 32px;
 }
 p {
-	margin: 10px 0px;
+	margin: 15px 0px;
 }
 p + p {
 	margin-top: 0px;
@@ -71,6 +71,7 @@ input:focus,button:focus,select:focus {
 }
 #container {
 	align-items: center;
+	position: relative;
 	width: 768px; max-width: 100%;
 	padding: 10px;
 	background: #fff;
@@ -80,20 +81,20 @@ header {
 
 }
 
-.menu {
+#menu {
 	width: 100%;
 }
-.menu .item {
+#menu .item {
 	margin: 20px;
 }
-.menu .item + .item {
+#menu .item + .item {
 	margin-top: 0px;
 	border-top: 1px solid #eee;
 }
-.menu .item h3 {
+#menu .item h3 {
 	margin: 0.75em 0px 0.5em;
 }
-.menu .item .description {
+#menu .item .description {
 	position: relative;
 	height: 0px; width: 100%;
 	padding-top: 56%;
@@ -101,7 +102,7 @@ header {
 	background-position: center 50%;
 	overflow: hidden;
 }
-.menu .item .description p {
+#menu .item .description p {
 	position: absolute; bottom: 0px;
 	margin: 0px; padding: 10px;
 	backdrop-filter: blur(5px);
@@ -114,19 +115,33 @@ header {
 		-1px -1px 1px #0008
 	;
 }
-.menu .item .add_to_cart {
+#menu .item .cost {
+	font-size: 24px;
+}
+#menu .item .add_to_cart {
 	flex-direction: row;
 }
-.menu .item .add_to_cart button:first-child {
+#menu .item .add_to_cart button:first-child {
 	width: 220px;
 }
-.menu .item .add_to_cart button.fake {
+#menu .item .add_to_cart button.fake {
 	border-color: #ddd; border-right: 0px;
 	background: #fff; color: #222;
 }
-.menu .item .add_to_cart input {
+#menu .item .add_to_cart input {
 	width: 80px;
 	padding-left: 25px;
 	border-left: 0px; border-right: 0px;
 	text-align: center;
+}
+
+#currency {
+	position: fixed; top: 15px; left: calc(50% + 399px);
+	width: 120px;
+	padding: 10px 15px;
+	border-radius: 10px;
+	background: #fff;
+}
+#currency p {
+	margin-top: 0px;
 }

@@ -2,6 +2,7 @@ import React 		from "react";
 import {Provider}	from 'react-redux';
 
 import Header	from './components/header';
+import Currency	from './components/currency';
 import Menu		from './components/menu';
 import Cart		from './components/cart';
 
@@ -11,6 +12,7 @@ export default () => (
 	<div id="container">
 		<Provider store={store}>
 			<Header/>
+			<Currency/>
 			<Menu/>
 			<Cart/>
 		</Provider>

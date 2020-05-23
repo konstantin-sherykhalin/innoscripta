@@ -2,7 +2,7 @@ import config		from '../../config';
 
 // Structure
 export const ReducerRecord = () => ({
-	currency: 'dollar',
+	currency: 'USD',
 });
 
 // Consts

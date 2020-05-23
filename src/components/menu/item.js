@@ -1,6 +1,31 @@
-import React from 'react';
+import React		from 'react';
+import {connect}	from 'react-redux';
 
-export default ({data,...props}) => {
+import currency_list from '../../config/currency';
+
+import {
+	add_pizza,
+	change_number,
+	remove_pizza,
+	reject_pizza,
+	module_name as cart_module
+} from '../../redux/reducers/cart';
+import {change_currency,module_name as currency_module} from '../../redux/reducers/currency';
+import {load_list,module_name as list_module} from '../../redux/reducers/list';
+
+
+const mapStateToProps = state => ({
+	currency: state[currency_module].currency,
+});
+
+const mapDispatchToProps = {
+	add_pizza,
+	change_number,
+	remove_pizza,
+	reject_pizza,
+};
+
+const MenuItemComponent = ({data,...props}) => {
 	const [remove_button_state,set_remove_button_state] = React.useState(true);
 	const [number,set_number] = React.useState(data.number);
 	React.useEffect(_ => set_number(data.number),[data.number]);
@@ -14,13 +39,15 @@ export default ({data,...props}) => {
 		props.change_number({id:data.id,number});
 	}
 
+	const current_currency = currency_list.find(e => e.ticker==props.currency);
+
 	return (
 		<div className="item">
 			<h3>{data.name}</h3>
 			<div className="description" style={{backgroundImage:`url(${data.image})`}}>
 				<p>{data.description}</p>
 			</div>
-			<p>Цена: {data.cost}Р</p>
+			<p className="cost">Цена: {Math.round(data.cost/current_currency.rate*100)/100+current_currency.symbol}</p>
 			<div className="add_to_cart">
 				{data.number ? (
 					<>
@@ -44,3 +71,5 @@ export default ({data,...props}) => {
 		</div>
 	);
 }
+
+export default connect(mapStateToProps,mapDispatchToProps)(MenuItemComponent);
