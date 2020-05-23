@@ -84,6 +84,19 @@ header {
 #menu {
 	width: 100%;
 }
+
+#menu .error {
+	align-items: center;
+}
+#menu .waiting {
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+#menu .waiting p {
+	margin-left: 10px;
+}
+
 #menu .item {
 	margin: 20px;
 }
