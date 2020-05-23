@@ -16,6 +16,7 @@ export const ReducerRecord = () => ({
 export const module_name = 'cart';
 
 export const ADD		= config.name+'/'+module+'/ADD';
+export const SET_NUMBER	= config.name+'/'+module+'/SET_NUMBER';
 export const REMOVE		= config.name+'/'+module+'/REMOVE';
 export const REMOVE_ALL	= config.name+'/'+module+'/REMOVE_ALL';
 
@@ -27,7 +28,10 @@ export default function reducer(st = ReducerRecord(),action) {
 		case ADD:
 			let already_added = st.list.find(e => e.id==payload.id);
 			if(already_added)	return {list:st.list.map(e => e.id==payload.id ? {...e,number:e.number+1} : e)};
-			else				return {list:[...st.list,payload]};
+			else				return {list:[...st.list,{...payload,number:1}]};
+
+		case SET_NUMBER:
+			return {list:st.list.map(e => e.id==payload.id ? {...e,number:payload} : e)};
 
 		case REMOVE:
 			let record = st.list.find(e => e.id==payload.id);
@@ -42,5 +46,6 @@ export default function reducer(st = ReducerRecord(),action) {
 
 // Actions
 export const add_pizza		= (payload) => ({type:ADD,			payload});
+export const change_number	= (payload) => ({type:SET_NUMBER,	payload});
 export const remove_pizza	= (payload) => ({type:REMOVE,		payload});
 export const reject_pizza	= (payload) => ({type:REMOVE_ALL,	payload});

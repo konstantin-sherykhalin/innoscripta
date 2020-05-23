@@ -1,6 +1,7 @@
 * {
 	box-sizing: border-box;
 	font-weight: 300;
+	transition: all 0.2s ease;
 }
 body {
 	margin: 0;
@@ -34,7 +35,7 @@ p + p {
 }
 
 button {
-	width: 100%;
+	width: fit-content;
 	padding: 10px 25px;
 	border: 1px solid rgba(2,136,209,0.5);
 	background: #039be5; color: #fff;
@@ -112,4 +113,20 @@ header {
 		-1px  1px 1px #0008,
 		-1px -1px 1px #0008
 	;
+}
+.menu .item .add_to_cart {
+	flex-direction: row;
+}
+.menu .item .add_to_cart button:first-child {
+	width: 220px;
+}
+.menu .item .add_to_cart button.fake {
+	border-color: #ddd; border-right: 0px;
+	background: #fff; color: #222;
+}
+.menu .item .add_to_cart input {
+	width: 80px;
+	padding-left: 25px;
+	border-left: 0px; border-right: 0px;
+	text-align: center;
 }

@@ -5,6 +5,7 @@ import Item from './item';
 
 import {
 	add_pizza,
+	change_number,
 	remove_pizza,
 	reject_pizza,
 	module_name as cart_module
@@ -20,12 +21,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
 	add_pizza,
+	change_number,
 	remove_pizza,
 	reject_pizza,
 	change_currency,
 };
 
-const MenuComponent = (props) => {
+const CartComponent = (props) => {
 	const list = [];
 	for(let cart_item of props.cart) {
 		let list_item = props.list.find(e => e.id==cart_item.id);
@@ -47,4 +49,4 @@ const MenuComponent = (props) => {
 	);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(MenuComponent);
+export default connect(mapStateToProps,mapDispatchToProps)(CartComponent);
