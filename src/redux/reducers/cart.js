@@ -6,10 +6,6 @@ export const ReducerRecord = () => ({
 		/*
 		{
 			id: number
-			name: string,
-			description: string,
-			image: string,
-			cost: number,
 			number: number,
 		},
 		*/
@@ -45,6 +41,6 @@ export default function reducer(st = ReducerRecord(),action) {
 }
 
 // Actions
-export const add_pizzed		= (payload) => ({type:ADD,			payload});
+export const add_pizza		= (payload) => ({type:ADD,			payload});
 export const remove_pizza	= (payload) => ({type:REMOVE,		payload});
 export const reject_pizza	= (payload) => ({type:REMOVE_ALL,	payload});

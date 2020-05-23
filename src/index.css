@@ -6,7 +6,7 @@ body {
 	margin: 0;
 	padding: 0;
 	background: #eee; color: #222;
-	font-size: 18px;
+	font-size: 20px;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 		sans-serif;
@@ -18,13 +18,13 @@ div,header {
 	flex-direction: column;
 }
 h1 {
-	font-size: 40px;
+	font-size: 60px;
 }
 h2 {
-	font-size: 32px;
+	font-size: 40px;
 }
 h3 {
-	font-size: 24px;
+	font-size: 32px;
 }
 p {
 	margin: 10px 0px;
@@ -80,7 +80,7 @@ header {
 }
 
 .menu {
-	width: 480px;
+	width: 100%;
 }
 .menu .item {
 	margin: 20px;
@@ -92,7 +92,24 @@ header {
 .menu .item h3 {
 	margin: 0.75em 0px 0.5em;
 }
-.menu .item img {
-	height: 270px; width: 480px;
-	object-fit: cover;
+.menu .item .description {
+	position: relative;
+	height: 0px; width: 100%;
+	padding-top: 56%;
+	background-size: cover;
+	background-position: center 50%;
+	overflow: hidden;
+}
+.menu .item .description p {
+	position: absolute; bottom: 0px;
+	margin: 0px; padding: 10px;
+	backdrop-filter: blur(5px);
+	color: #fff;
+	font-weight: 400;
+	text-shadow:
+		 1px  1px 1px #0008,
+		 1px -1px 1px #0008,
+		-1px  1px 1px #0008,
+		-1px -1px 1px #0008
+	;
 }

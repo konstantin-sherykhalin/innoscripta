@@ -23,18 +23,28 @@ const mapDispatchToProps = {
 	remove_pizza,
 	reject_pizza,
 	change_currency,
-	load_list,
 };
 
-const MenuComponent = (props) => (
-	<div className="menu">
-		{props.list.map(e => (
-			<Item
-				key={e.id}
-				data={e}
-			/>
-		))}
-	</div>
-);
+const MenuComponent = (props) => {
+	const list = [];
+	for(let cart_item of props.cart) {
+		let list_item = props.list.find(e => e.id==cart_item.id);
+		list.push({
+			...list_item,
+			...cart_item,
+		});
+	}
+
+	return (
+		<div className="cart">
+			{list.map(e => (
+				<Item
+					key={e.id}
+					data={e}
+				/>
+			))}
+		</div>
+	);
+}
 
 export default connect(mapStateToProps,mapDispatchToProps)(MenuComponent);
