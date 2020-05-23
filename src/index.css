@@ -149,7 +149,7 @@ header {
 }
 
 #currency {
-	position: fixed; top: 15px; left: calc(50% + 399px);
+	position: fixed; bottom: 15px; left: calc(50% + 399px);
 	width: 120px;
 	padding: 10px 15px;
 	border-radius: 10px;

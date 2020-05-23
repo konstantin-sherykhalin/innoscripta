@@ -23,9 +23,9 @@ export const ReducerRecord = () => ({
 // Consts
 export const module_name = 'list';
 
-export const LOAD_START		= config.name+'/'+module+'/LOAD_START';
-export const LOAD_SUCCESS	= config.name+'/'+module+'/LOAD_SUCCESS';
-export const LOAD_ERROR		= config.name+'/'+module+'/LOAD_ERROR';
+export const LOAD_START		= config.name+'/'+module_name+'/LOAD_START';
+export const LOAD_SUCCESS	= config.name+'/'+module_name+'/LOAD_SUCCESS';
+export const LOAD_ERROR		= config.name+'/'+module_name+'/LOAD_ERROR';
 
 // Reducer
 export default function reducer(st = ReducerRecord(),action) {
@@ -37,7 +37,7 @@ export default function reducer(st = ReducerRecord(),action) {
 		case LOAD_ERROR:	return {...st,state:'initial',error};
 	}
 
-	return ReducerRecord();
+	return st;
 }
 
 // Actions

@@ -5,6 +5,6 @@ export default ({data}) => (
 		<h3>{data.name}</h3>
 		<img src={data.image} />
 		<p>{data.description}</p>
-		<p>Цена: {data.cost}Р</p>
+		<p>Cost: {data.cost}Р</p>
 	</div>
 );

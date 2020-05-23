@@ -21,18 +21,10 @@ const mapDispatchToProps = {
 };
 
 const MenuComponent = (props) => {
-	let on_refresh = () => null;
+	let on_refresh = props.load_list;
 	const list = [];
 
-	if(props.data.state == 'initial') {
-		if(props.data.error) {
-			on_refresh = () => props.load_list();
-		} else {
-			props.load_list();
-		}
-	} else if(props.data.state == 'loading') {
-
-	} else if(props.data.state == 'loaded') {
+	if(props.data.list.length) {
 		for(let list_item of props.data.list) {
 			let cart_item = props.cart.list.find(e => e.id==list_item.id);
 			list.push({
@@ -40,24 +32,28 @@ const MenuComponent = (props) => {
 				...cart_item,
 			});
 		}
+	} else if(props.data.state == 'initial') {
+		if(!props.data.error) {
+			props.load_list();
+		}
 	}
 
 	return (
 		<div id="menu">
 			{props.data.error ? (
 				<div className="error">
-					<p>Не удалось загрузить список блюд.</p>
-					<p><a href="javascript://" onClick={on_refresh}>Попробовать еще раз</a></p>
+					<p>Failed to load dishes list.</p>
+					<p><a href="javascript://" onClick={on_refresh}>Try again</a></p>
 				</div>
 			) : (props.data.state == 'loading') ? (
 				<div className="waiting">
 					<Spinner/>
-					<p>Загрузка&hellip;</p>
+					<p>Loading&hellip;</p>
 				</div>
 			) : (props.data.state == 'loaded') ? (
 				list.length
 				? list.map(e => (<Item key={e.id} data={e} />))
-				: (<p>Доступных пицц нет</p>)
+				: (<p>No pizzas available</p>)
 			) : null}
 		</div>
 	);

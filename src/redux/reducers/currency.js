@@ -8,7 +8,7 @@ export const ReducerRecord = () => ({
 // Consts
 export const module_name = 'currency';
 
-export const CHANGE = config.name+'/'+module+'/CHANGE';
+export const CHANGE = config.name+'/'+module_name+'/CHANGE';
 
 // Reducer
 export default function reducer(st = ReducerRecord(),action) {
@@ -18,7 +18,7 @@ export default function reducer(st = ReducerRecord(),action) {
 		case CHANGE: return {currency:payload};
 	}
 
-	return ReducerRecord();
+	return st;
 }
 
 // Actions

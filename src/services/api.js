@@ -23,14 +23,14 @@ export default function* API(method,data = {}) {
 			if(data.response)	return {response:data.response};
 			if(data.error)		return {error:data.error};
 		} else if(res.status == 500) {
-			return {error:{code:res.status,message:'Сервер не доступен'}};
+			return {error:{code:res.status,message:'Server is unavailble'}};
 		} else {
 			console.log(res);
-			return {error:{code:res.status,message:'Проблемы со связью'}};
+			return {error:{code:res.status,message:'Connection problems'}};
 		}
 		*/
 
-		yield new Promise(res => setTimeout(res,2000));
+		// yield new Promise(res => setTimeout(res,2000));
 
 		if(Math.random() < 0.2) {
 			return {error:{type:'internal',message:'MySQL error'}};
@@ -38,22 +38,22 @@ export default function* API(method,data = {}) {
 			return {response:{list:[
 				{
 					id: 1,
-					name: 'Престо',
-					description: 'Сочетание четырех видов мяса, томатный соус, сыр, помидоры, перец, зелень',
+					name: 'Presto',
+					description: 'Combination of four meat kinds, tomato sauce, cheese, tomatoes, pepper, herbs',
 					image: 'http://www.sobaka.ru/images/post/00/09/78/62/_huge.jpg',
 					cost: 500,
 				},
 				{
 					id: 2,
-					name: 'Маргарита',
-					description: 'Классический томатный соус, сыр моцарелла, базилик, масло оливковое',
+					name: 'Margarita',
+					description: 'Classic tomato sauce, mozzarella chees, basil, olive oil',
 					image: 'https://cache3.youla.io/files/images/780_780/5c/c1/5cc1816080e08e16160b9da3.jpg',
 					cost: 275,
 				},
 				{
 					id: 3,
-					name: 'Прошутто и салями',
-					description: 'Сыр моцарелла, соус томатный, пармская сыровяленая ветчина, острая колбаса салями',
+					name: 'Prosciutto and salami',
+					description: 'Mozzarella cheese, tomato sauce, Parma cured ham, spicy salami sausage',
 					image: 'https://fermer.blog/media/res/1/1/9/7/9/3/119793.pxm6po.840.jpg',
 					cost: 310,
 				},
@@ -61,6 +61,6 @@ export default function* API(method,data = {}) {
 		}
 	} catch(e) {
 		console.log(e);
-		return {error:{message:'Не удается выполнить запрос'}};
+		return {error:{message:'Failed to send request'}};
 	}
 }

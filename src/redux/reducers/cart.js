@@ -15,10 +15,10 @@ export const ReducerRecord = () => ({
 // Consts
 export const module_name = 'cart';
 
-export const ADD		= config.name+'/'+module+'/ADD';
-export const SET_NUMBER	= config.name+'/'+module+'/SET_NUMBER';
-export const REMOVE		= config.name+'/'+module+'/REMOVE';
-export const REMOVE_ALL	= config.name+'/'+module+'/REMOVE_ALL';
+export const ADD		= config.name+'/'+module_name+'/ADD';
+export const SET_NUMBER	= config.name+'/'+module_name+'/SET_NUMBER';
+export const REMOVE		= config.name+'/'+module_name+'/REMOVE';
+export const REMOVE_ALL	= config.name+'/'+module_name+'/REMOVE_ALL';
 
 // Reducer
 export default function reducer(st = ReducerRecord(),action) {
@@ -31,7 +31,7 @@ export default function reducer(st = ReducerRecord(),action) {
 			else				return {list:[...st.list,{...payload,number:1}]};
 
 		case SET_NUMBER:
-			return {list:st.list.map(e => e.id==payload.id ? {...e,number:payload} : e)};
+			return {list:st.list.map(e => e.id==payload.id ? {...e,number:payload.number} : e)};
 
 		case REMOVE:
 			let record = st.list.find(e => e.id==payload.id);
@@ -41,7 +41,7 @@ export default function reducer(st = ReducerRecord(),action) {
 			return {list:st.list.filter(e => e.id!=payload.id)};
 	}
 
-	return ReducerRecord();
+	return st;
 }
 
 // Actions
