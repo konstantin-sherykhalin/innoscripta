@@ -30,7 +30,10 @@ const MenuItemComponent = ({data,...props}) => {
 	const on_add	= () => props.add_pizza({id:data.id});
 	const on_remove	= () => props.remove_pizza({id:data.id});
 	const on_reject	= () => props.reject_pizza({id:data.id});
-	const on_number_input = (e) => props.change_number({id:data.id,number:e.target.value});
+	const on_number_input = (e) => {
+		let number = Math.max(0,e.target.value);
+		props.change_number({id:data.id,number});
+	}
 
 	const current_currency = currency_list.find(e => e.ticker==props.currency);
 
@@ -54,7 +57,7 @@ const MenuItemComponent = ({data,...props}) => {
 						{remove_button_state ? 'Remove from cart' : 'In cart'}
 					</button>
 					<button onClick={on_remove}>-</button>
-					<input type="number" value={data.number} onInput={on_number_input} />
+					<input type="number" min="0" value={data.number} onInput={on_number_input} />
 					<button onClick={on_add}>+</button>
 					</>
 				) : (

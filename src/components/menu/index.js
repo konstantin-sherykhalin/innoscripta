@@ -1,6 +1,8 @@
 import React		from 'react';
 import {connect}	from 'react-redux';
 
+import join_menu_cart from '../../services/join_menu_cart';
+
 import Spinner from '../../templates/spinner';
 
 import Item from './item';
@@ -22,16 +24,10 @@ const mapDispatchToProps = {
 
 const MenuComponent = (props) => {
 	let on_refresh = props.load_list;
-	const list = [];
+	let list = [];
 
 	if(props.data.list.length) {
-		for(let list_item of props.data.list) {
-			let cart_item = props.cart.list.find(e => e.id==list_item.id);
-			list.push({
-				...list_item,
-				...cart_item,
-			});
-		}
+		list = join_menu_cart({menu:props.data.list,cart:props.cart.list});
 	} else if(props.data.state == 'initial') {
 		if(!props.data.error) {
 			props.load_list();
