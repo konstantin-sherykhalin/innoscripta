@@ -37,8 +37,8 @@ const CurrencyComponent = (props) => {
 			if(!cart) return;
 
 			const pos = cart.getBoundingClientRect().top;
-			if( show_button && pos < window.innerHeight*2/3) set_show_button(false);
-			if(!show_button && pos > window.innerHeight*2/3) set_show_button(true);
+			if( show_button && pos < window.innerHeight/2) set_show_button(false);
+			if(!show_button && pos > window.innerHeight/2) set_show_button(true);
 		}
 
 		window.addEventListener('scroll',on_scroll);
@@ -56,9 +56,9 @@ const CurrencyComponent = (props) => {
 				</select>
 			</div>
 			{price>0 && (
-				<div id="cart_summary">
+				<div id="cart_summary" className={show_button ? '' : 'hidden'}>
 					<p>Order price: {Math.round(price*100)/100}{current_currency.symbol}</p>
-					<button className={show_button ? '' : 'hidden'} onClick={go_to_cart}>Go to cart</button>
+					<button onClick={go_to_cart}>Go to cart</button>
 				</div>
 			)}
 		</div>

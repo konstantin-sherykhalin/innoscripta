@@ -9,8 +9,6 @@ export const ReducerRecord = () => ({
 			number: number,
 		},
 		*/
-		{id:1,number:5},
-		{id:2,number:2},
 	],
 });
 
