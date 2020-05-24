@@ -38,7 +38,7 @@ const MenuItemComponent = ({data,...props}) => {
 	const current_currency = currency_list.find(e => e.ticker==props.currency);
 
 	return (
-		<div className="item">
+		<div id={'item_'+data.id} className="item">
 			<h3>{data.name}</h3>
 			<div className="description" style={{backgroundImage:`url(${data.image})`}}>
 				<p>{data.description}</p>

@@ -19,12 +19,31 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {change_currency};
 
 const CurrencyComponent = (props) => {
+	const [show_button,set_show_button] = React.useState(true);
+	const go_to_cart = () => document.getElementById('cart').scrollIntoView({behavior:'smooth'});
+
 	const current_currency = currency_list.find(e => e.ticker==props.currency);
 	const price = (
 		join_menu_cart({menu:props.data.list,cart:props.cart.list})
 			.reduce((sum,row) => sum+row.cost*row.number,0)
 		/current_currency.rate
 	);
+
+	React.useEffect(_ => {
+		if(price<=0) return;
+
+		const on_scroll = (e) => {
+			const cart = document.getElementById('cart');
+			if(!cart) return;
+
+			const pos = cart.getBoundingClientRect().top;
+			if( show_button && pos < window.innerHeight*2/3) set_show_button(false);
+			if(!show_button && pos > window.innerHeight*2/3) set_show_button(true);
+		}
+
+		window.addEventListener('scroll',on_scroll);
+		return () => window.removeEventListener('scroll',on_scroll);
+	},[show_button,price]);
 
 	return (props.data.state == 'loaded') ? (
 		<div id="short_cart">
@@ -38,7 +57,8 @@ const CurrencyComponent = (props) => {
 			</div>
 			{price>0 && (
 				<div id="cart_summary">
-					<p>Cart price: {Math.round(price*100)/100}{current_currency.symbol}</p>
+					<p>Order price: {Math.round(price*100)/100}{current_currency.symbol}</p>
+					<button className={show_button ? '' : 'hidden'} onClick={go_to_cart}>Go to cart</button>
 				</div>
 			)}
 		</div>

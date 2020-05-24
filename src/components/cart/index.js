@@ -1,6 +1,8 @@
 import React		from 'react';
 import {connect}	from 'react-redux';
 
+import join_menu_cart from '../../services/join_menu_cart';
+
 import Item from './item';
 
 import {
@@ -14,9 +16,9 @@ import {change_currency,module_name as currency_module} from '../../redux/reduce
 import {load_list,module_name as list_module} from '../../redux/reducers/list';
 
 const mapStateToProps = state => ({
-	cart:		state[cart_module].list,
+	cart:		state[cart_module],
 	currency:	state[currency_module].currency,
-	list:		state[list_module].list,
+	data:		state[list_module],
 });
 
 const mapDispatchToProps = {
@@ -28,25 +30,25 @@ const mapDispatchToProps = {
 };
 
 const CartComponent = (props) => {
-	const list = [];
-	for(let cart_item of props.cart) {
-		let list_item = props.list.find(e => e.id==cart_item.id);
-		list.push({
-			...list_item,
-			...cart_item,
-		});
-	}
+	const overall_number = props.cart.list.reduce((s,c) => s+c.number,0)
+	const list = join_menu_cart({menu:props.data.list,cart:props.cart.list}).filter(e => e.number>0);
 
-	return (
-		<div className="cart">
-			{list.map(e => (
-				<Item
-					key={e.id}
-					data={e}
-				/>
-			))}
+	return overall_number>0 ? (
+		<div id="cart">
+			<h2>Confirm your order</h2>
+			<div className="table">
+				{list.map(e => (
+					<Item
+						key={e.id}
+						data={e}
+					/>
+				))}
+			</div>
+			<div className="accept">
+				<button>Accept</button>
+			</div>
 		</div>
-	);
+	) : null;
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(CartComponent);

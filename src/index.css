@@ -45,6 +45,13 @@ button {
 button:hover {
 	background: rgb(2,136,209);
 }
+button.secondary {
+	border: 0px;
+	background: transparent; color: #222;
+}
+button.secondary:hover {
+	background: #00000008;
+}
 button[disabled],button.disabled {
 	cursor: default;
 	opacity: 0.5;
@@ -111,7 +118,7 @@ header {
 	margin-bottom: 0px;
 }
 #menu .item h3 {
-	margin: 0.75em 0px 0.5em;
+	margin: 0.5em 0px 0.5em;
 }
 #menu .item .description {
 	position: relative;
@@ -161,21 +168,88 @@ header {
 	align-items: baseline;
 	position: sticky; bottom: 0px; left: 0px;
 	width: 100%;
-	padding: 20px;
-	border-top: 1px solid #bbb;;
+	margin-top: -1px; padding: 20px;
+	border-top: 1px solid #bbb;
 	background: #fff;
 }
-#currency {
+#short_cart > div {
 	flex-direction: row;
 	justify-content: start;
 	align-items: baseline;
 }
-#currency p {
+#short_cart p {
 	margin: 0px 10px 0px 0px;
 }
-#cart_summary {
+#short_cart > div:not(:first-child) {
 	margin-left: 20px;
 }
+#short_cart > div > *:not(:first-child) {
+	margin-left: 10px;
+}
+#cart_summary button {
+	padding: 5px 15px;
+	font-size: 0.8em;
+}
+#cart_summary button.hidden {
+	opacity: 0;
+}
+
+#cart {
+	width: 100%;
+	border-top: 1px solid #ddd;
+}
+#cart h2 {
+	text-align: center;
+}
+#cart .delimeter {
+	height: 0px; width: calc(100% - 40px);
+	margin-left: 20px;
+	border-bottom: 1px solid #eee;
+}
+#cart .delimeter:last-child {
+	border-bottom: 0px;
+}
+#cart .item {
+	flex-direction: row;
+	align-items: center;
+	margin: 0px; padding: 20px;
+}
+#cart .item.lighted {
+	background: #f5f5f5;
+}
+#cart .item .name {
+	width: 250px;
+}
+#cart .item .number {
+	flex-direction: row;
+	align-items: baseline;
+	width: 150px;
+}
+#cart .item .number input {
+	width: 70px;
+	margin: 0px 5px; padding: 5px 10px;
+	text-align: right;
+}
+#cart .item .price {
+	width: 100px;
+	text-align: right;
+}
+#cart .item .remove {
+	flex: 1;
+	align-items: flex-end;
+	cursor: pointer;
+}
+#cart .accept {
+	align-items: center;
+	width: 100%;
+	padding: 20px;
+}
+#cart .accept button {
+	width: 200px;
+	font-size: 1.3em;
+}
+
+/* Mobiles */
 
 @media(max-width: 768px) {
 	#container {
