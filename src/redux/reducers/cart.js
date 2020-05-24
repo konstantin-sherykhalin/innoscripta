@@ -1,18 +1,14 @@
-import config		from '../../config';
+import config	from '../../config';
+import types	from '../../types/menu';
 
-// Structure
-export const ReducerRecord = () => ({
-	list: [
-		/*
-		{
-			id: number
-			number: number,
-		},
-		*/
-	],
-});
+/**
+ * Structure
+ */
+export const ReducerRecord = () => types.default_reducer_record;
 
-// Consts
+/**
+ * Consts
+ */
 export const module_name = 'cart';
 
 export const ADD		= config.name+'/'+module_name+'/ADD';
@@ -20,7 +16,9 @@ export const SET_NUMBER	= config.name+'/'+module_name+'/SET_NUMBER';
 export const REMOVE		= config.name+'/'+module_name+'/REMOVE';
 export const REMOVE_ALL	= config.name+'/'+module_name+'/REMOVE_ALL';
 
-// Reducer
+/**
+ * Reducer
+ */
 export default function reducer(st = ReducerRecord(),action) {
 	const {type,payload,error} = action;
 
@@ -44,7 +42,9 @@ export default function reducer(st = ReducerRecord(),action) {
 	return st;
 }
 
-// Actions
+/**
+ * Actions
+ */
 export const add_pizza		= (payload) => ({type:ADD,			payload});
 export const change_number	= (payload) => ({type:SET_NUMBER,	payload});
 export const remove_pizza	= (payload) => ({type:REMOVE,		payload});

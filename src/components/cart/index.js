@@ -9,29 +9,15 @@ import Checkbox from '../../templates/checkbox';
 
 import Item from './item';
 
-import {
-	add_pizza,
-	change_number,
-	remove_pizza,
-	reject_pizza,
-	module_name as cart_module
-} from '../../redux/reducers/cart';
-import {change_currency,module_name as currency_module} from '../../redux/reducers/currency';
-import {load_list,module_name as list_module} from '../../redux/reducers/list';
+import {module_name as cart_module}						from '../../redux/reducers/cart';
+import {change_currency,module_name as currency_module}	from '../../redux/reducers/currency';
+import {load_list,module_name as list_module}			from '../../redux/reducers/list';
 
 const mapStateToProps = state => ({
 	cart:		state[cart_module],
 	currency:	state[currency_module].currency,
 	data:		state[list_module],
 });
-
-const mapDispatchToProps = {
-	add_pizza,
-	change_number,
-	remove_pizza,
-	reject_pizza,
-	change_currency,
-};
 
 const CartComponent = (props) => {
 	const current_currency = currency_list.find(e => e.ticker==props.currency);
@@ -49,12 +35,7 @@ const CartComponent = (props) => {
 		<div id="cart">
 			<h2>Confirm your order</h2>
 			<div className="table">
-				{list.map(e => (
-					<Item
-						key={e.id}
-						data={e}
-					/>
-				))}
+				{list.map(e => (<Item key={e.id} data={e} />))}
 				<div className="item">
 					<div className="name">Delivery</div>
 					<div className="number" style={{paddingLeft:30}}>
@@ -64,11 +45,11 @@ const CartComponent = (props) => {
 				</div>
 			</div>
 			<div className="accept">
-				<p>Order price: {Math.round((price + delivery*delivery_price)*100)/100}{current_currency.symbol}</p>
+				<p>Order {delivery && '+ delivery'} price: {Math.round((price + delivery*delivery_price)*100)/100}{current_currency.symbol}</p>
 				<button>Accept</button>
 			</div>
 		</div>
 	) : null;
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CartComponent);
+export default connect(mapStateToProps)(CartComponent);

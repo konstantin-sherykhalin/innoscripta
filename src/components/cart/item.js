@@ -1,7 +1,10 @@
 import React		from 'react';
+import PropTypes	from 'prop-types';
 import {connect}	from 'react-redux';
 
 import currency_list from '../../config/currency';
+
+import cart_types from '../../types/cart';
 
 import {
 	add_pizza,
@@ -56,5 +59,8 @@ const CartItemComponent = ({data,...props}) => {
 		</>
 	);
 }
+CartItemComponent.propTypes = {
+	data: cart_types.filled_item,
+};
 
 export default connect(mapStateToProps,mapDispatchToProps)(CartItemComponent);

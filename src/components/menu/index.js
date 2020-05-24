@@ -18,9 +18,7 @@ const mapStateToProps = state => ({
 	data:		state[list_module],
 });
 
-const mapDispatchToProps = {
-	load_list,
-};
+const mapDispatchToProps = {load_list};
 
 const MenuComponent = (props) => {
 	let on_refresh = props.load_list;

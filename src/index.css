@@ -77,6 +77,9 @@ select {
 	margin-right: 10px;
 	background: #e5e5e5;
 }
+.checkbox:hover {
+	cursor: pointer;
+}
 .checkbox .kernel {
 	position: absolute; top: 5%; left: 5%; right: 5%; bottom: 5%;
 	background: #fff;

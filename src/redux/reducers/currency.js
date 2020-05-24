@@ -1,16 +1,21 @@
-import config		from '../../config';
+import config	from '../../config';
+import types	from '../../types/currency';
 
-// Structure
-export const ReducerRecord = () => ({
-	currency: 'RUB',
-});
+/**
+ * Structure
+ */
+export const ReducerRecord = () => types.default_reducer_record;
 
-// Consts
+/**
+ * Consts
+ */
 export const module_name = 'currency';
 
 export const CHANGE = config.name+'/'+module_name+'/CHANGE';
 
-// Reducer
+/**
+ * Reducer
+ */
 export default function reducer(st = ReducerRecord(),action) {
 	const {type,payload,error} = action;
 
@@ -21,5 +26,7 @@ export default function reducer(st = ReducerRecord(),action) {
 	return st;
 }
 
-// Actions
+/**
+ * Actions
+ */
 export const change_currency = (payload) => ({type:CHANGE,payload});
