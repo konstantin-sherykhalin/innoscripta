@@ -33,12 +33,14 @@ const CartItemComponent = ({data,...props}) => {
 	}
 	const on_reject	= () => props.reject_pizza({id:data.id});
 
+	const current_currency = currency_list.find(e => e.ticker==props.currency);
+
 	return (
 		<>
 		<div className={'item '+(hover ? 'lighted' : '')}>
 			<div className="name">{data.name}</div>
 			<div className="number"><input type="number" min="0" value={data.number} onInput={on_number_input} /> pcs</div>
-			<div className="price">{data.cost*data.number}Р</div>
+			<div className="price">{Math.round(data.cost*data.number/current_currency.rate*100)/100}{current_currency.symbol}</div>
 			<div className="remove">
 				<button
 					className="secondary"

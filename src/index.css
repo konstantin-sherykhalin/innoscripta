@@ -217,6 +217,9 @@ header {
 #cart .item.lighted {
 	background: #f5f5f5;
 }
+#cart .item > * {
+	padding: 0px 5px;
+}
 #cart .item .name {
 	width: 250px;
 }
@@ -264,6 +267,34 @@ header {
 	#menu .item .add_to_cart button:first-child:not(:only-child):not(.fake) {
 		font-size: 16px;
 	}
+
+	#short_cart {
+		flex-direction: column;
+	}
+	#short_cart > div:not(:first-child) {
+		margin-left: 0px;
+	}
+
+	#cart .item .name {
+		width: 140px;
+	}
+	#cart .item .number {
+		width: 100px;
+	}
+	#cart .item .number input {
+		width: 50px;
+	}
+	#cart .item .price {
+		width: 90px;
+	}
+	#cart .item .remove {
+		flex: initial;
+		width: min-content;
+		padding: 0px;
+	}
+	#cart .item .remove button {
+		padding: 10px 15px;
+	}
 }
 @media(max-width: 375px) {
 	body {
@@ -274,8 +305,21 @@ header {
 		border-radius: 0px;
 	}
 
-	#menu .item .add_to_cart button:first-child:not(:only-child):not(.fake) {
-		font-size: 12px;
+	#menu .item .add_to_cart button {
+		padding-left: 15px; padding-right: 15px;
+	}
+
+	#cart .item .name {
+		width: 130px;
+	}
+	#cart .item .number {
+		width: 90px;
+	}
+	#cart .item .number input {
+		width: 40px;
+	}
+	#cart .item .price {
+		width: 80px;
 	}
 }
 @media(max-width: 320px) {
@@ -283,12 +327,22 @@ header {
 		font-size: 14px;
 	}
 
-	#menu .item .add_to_cart button:first-child {
-		width: 100%;
-	}
 	#menu .item .add_to_cart {
 		flex-wrap: wrap;
 		justify-content: center;
+	}
+	#menu .item .add_to_cart button {
+		padding-left: 25px; padding-right: 25px;
+	}
+	#menu .item .add_to_cart button:first-child {
+		width: 100%;
+	}
+	#menu .item .add_to_cart button:not(:first-child) {
+		border-color: #ddd; border-top: 0px;
+		background: transparent; color: #222;
+	}
+	#menu .item .add_to_cart button:not(:first-child):focus {
+		background: #00000008;
 	}
 	#menu .item .add_to_cart button.fake {
 		border-right: 1px solid #ddd;
@@ -297,5 +351,19 @@ header {
 	#menu .item .add_to_cart input {
 		flex: 1;
 		min-width: 50px; width: unset;
+		border-top: 0px;
+	}
+
+	#cart .item .name {
+		width: 100px;
+	}
+	#cart .item .number {
+		width: 80px;
+	}
+	#cart .item .number input {
+		width: 40px;
+	}
+	#cart .item .price {
+		width: 70px;
 	}
 }
